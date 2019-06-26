@@ -24,6 +24,7 @@ def pig_latinize(input):
     """
     post = {'input_text': input}
     request_url = 'https://hidden-journey-62459.herokuapp.com/piglatinize/'
+    get_latin = requests.post(request_url, data=post, allow_redirects=False)
 
 @app.route('/')
 def home():
