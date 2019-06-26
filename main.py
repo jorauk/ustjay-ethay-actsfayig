@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 
 def get_fact():
-
+    """ Returns fact from unkno.com """
     response = requests.get("http://unkno.com")
 
     soup = BeautifulSoup(response.content, "html.parser")
@@ -16,6 +16,12 @@ def get_fact():
 
     return facts[0].getText()
 
+
+def pig_latinize(input):
+    """
+    Takes text from user (input), posts to Pig Latinizer,
+    and returns Pig Latin text
+    """
 
 @app.route('/')
 def home():
