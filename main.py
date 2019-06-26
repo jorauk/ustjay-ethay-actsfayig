@@ -14,7 +14,7 @@ def get_fact():
     soup = BeautifulSoup(response.content, "html.parser")
     facts = soup.find_all("div", id="content")
 
-    return facts[0].getText().lstrip()
+    return facts[0].getText()
 
 
 def pig_latinize(input):
@@ -25,19 +25,19 @@ def pig_latinize(input):
     request_url = 'https://hidden-journey-62459.herokuapp.com/piglatinize/'
     post_latin = requests.post(request_url, data={'input_text': input},
         allow_redirects=False)
-    
+        
     return post_latin.headers['Location']
     
 
 @app.route('/')
 def home():
-    fact = get_fact()
-    latinize = pig_latinize(fact)
+    fact = get_fact().lstrip()
+    latinize = requests.get(pig_latinize(fact))
     
     soup = BeautifulSoup(latinize.content, "html.parser")
-    latin_quote = soup.find_all("h2")
+    latin_quote = soup.find_all("body")
     
-    return latin_quote
+    return latin_quote[0].getText()
 
 
 if __name__ == "__main__":
