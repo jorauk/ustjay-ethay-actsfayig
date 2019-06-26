@@ -22,11 +22,12 @@ def pig_latinize(input):
     Takes text from user (input), posts to Pig Latinizer,
     and returns Pig Latin text
     """
-    text = {'input_text': input}
     request_url = 'https://hidden-journey-62459.herokuapp.com/piglatinize/'
-    post_latin = requests.post(request_url, data=text, allow_redirects=False)
+    post_latin = requests.post(request_url, data={'input_text': input},
+        allow_redirects=False)
     
-    get_latin = 
+    return post_latin.headers('Location')
+    
 
 @app.route('/')
 def home():
