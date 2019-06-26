@@ -32,8 +32,12 @@ def pig_latinize(input):
 @app.route('/')
 def home():
     fact = get_fact()
+    latinize = pig_latinize(fact)
     
-    return pig_latinize(fact)
+    soup = BeautifulSoup(latinize.content, "html.parser")
+    latin_quote = soup.find_all("h2")
+    
+    return latin_quote
 
 
 if __name__ == "__main__":
