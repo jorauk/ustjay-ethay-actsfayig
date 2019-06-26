@@ -35,9 +35,9 @@ def home():
     latinize = requests.get(pig_latinize(fact))
     
     soup = BeautifulSoup(latinize.content, "html.parser")
-    latin_quote = soup.find_all("body")
+    latin_quote = soup.find_all("h2")
     
-    return latin_quote[0].getText()
+    return latin_quote[0].nextSibling
 
 
 if __name__ == "__main__":
