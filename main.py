@@ -22,6 +22,7 @@ def pig_latinize(input):
     Takes text from user (input), posts to Pig Latinizer,
     and returns Pig Latin text
     """
+    post = {'input_text': input}
 
 @app.route('/')
 def home():
