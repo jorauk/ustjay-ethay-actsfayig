@@ -32,6 +32,8 @@ def pig_latinize(input):
 @app.route('/')
 def home():
     fact = get_fact()
+    
+    return pig_latinize(fact)
 
 
 if __name__ == "__main__":
