@@ -14,7 +14,7 @@ def get_fact():
     soup = BeautifulSoup(response.content, "html.parser")
     facts = soup.find_all("div", id="content")
 
-    return facts[0].getText()
+    return facts[0].getText().lstrip()
 
 
 def pig_latinize(input):
@@ -26,7 +26,7 @@ def pig_latinize(input):
     post_latin = requests.post(request_url, data={'input_text': input},
         allow_redirects=False)
     
-    return post_latin.headers('Location')
+    return post_latin.headers['Location']
     
 
 @app.route('/')
